@@ -21,6 +21,11 @@ const Places = () => {
     <main>
       {error === "" ? null : <p>{error}</p>}
       <h1>kiujhsuid</h1>
+      <div className="place">
+        x : 6875
+        y : 6875
+
+      </div>
       <p>
         {places.map((place) => {
           return <p>{place.name}</p>;

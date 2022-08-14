@@ -28,7 +28,7 @@ function Login(props) {
         history.push("/me/profile");
       }
     } catch (error) {
-      setError(error.response.data.message);
+      setError("Email ou mot de passe incorrect");
     }
   };
 
@@ -37,12 +37,10 @@ function Login(props) {
       <div className="container">
         <img src={logosvg} alt="logo" className="mainlogo" />
         <h2>Bienvenue sur AlertnGo</h2>
-        {error === "" ? null : (
-          < Notification notif={error} unsetfunction={() => setError("")}/>
-        )}
+        {error === "" ? null : <p className="error">{error}</p>}
       </div>
 
-      <form className="fillform"onSubmit={login}>
+      <form className="fillform" onSubmit={login}>
         <label>
           <p>
             Email<span>*</span>
@@ -52,7 +50,7 @@ function Login(props) {
             name="email"
             placeholder="Email"
             autoComplete="email"
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
@@ -65,7 +63,7 @@ function Login(props) {
             name="passsword"
             placeholder="Motdepass"
             autoComplete="current-password"
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>

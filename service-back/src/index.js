@@ -14,7 +14,8 @@ app.use("/api/", userRoute);
 app.use(
   cors({
     origin: "http://localhost:3000",
-    accessControlAllowOrigin: "*",
+    accessControlAllowOrigin: "http://localhost:3000",
+    
     credentials: true,
   })
 );
