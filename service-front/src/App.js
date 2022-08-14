@@ -7,6 +7,7 @@ import Signup from "./pages/SignupPage";
 import Login from "./pages/LoginPage";
 import Page404 from "./pages/404";
 import Spot from "./pages/Spot";
+import Places from "./pages/Places";
 import Sent from "./pages/Sent";
 import Header from "./components/Header";
 
@@ -17,7 +18,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/spot" component={Spot} />
-        <Route exact path="/place" component={Spot} />
+        <Route exact path="/place" component={Places} />
         <Route exact path="/me/profile" component={Me} />
         <Route exact path="/me/signup" component={Signup} />
         <Route exact path="/me/login" component={Login} />
