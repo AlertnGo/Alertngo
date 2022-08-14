@@ -17,12 +17,14 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     accessControlAllowOrigin: "http://localhost:3000",
-
-    credentials: true,
+    allowedHeaders: "Content-Type",
   })
 );
 
+
+
 app.get(`/api`, async (req, res) => {
+  req.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.json("Bienvenu sur le serveur de Alertngo");
 });
 
