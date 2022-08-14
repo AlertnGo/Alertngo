@@ -1,0 +1,37 @@
+@import "../../assets/main.scss";
+
+.messagesection {
+  .message {
+    text-align: left;
+    width: 100%;
+    border: 2px solid $grey;
+    margin: 2% auto;
+    padding: 1% 1%;
+    background: $white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+
+    input {
+      display: none;
+    }
+
+    &:hover {
+      border: 2px solid $darkmaincolor;
+      background: $darkmaincolor;
+      color: $white;
+    }
+    &:active {
+      border: 5px solid $darkmaincolor;
+    }
+  }
+  .selected {
+    border: 2px solid $darkmaincolor;
+    background: $darkmaincolor;
+    color: $white;
+  }
+}

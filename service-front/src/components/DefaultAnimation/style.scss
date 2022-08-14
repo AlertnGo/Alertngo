@@ -1,0 +1,91 @@
+@import "../../assets/main.scss";
+
+.defaultAnimation {
+  width: 80%;
+  margin: 0% auto;
+  .animatedcar {
+    border-radius: 50%;
+    width: 100%;
+  }
+}
+
+.frame{
+  width: 100%;
+  height:300px;
+  // border:red 1px solid;
+  .path{
+    fill:$white;
+    stroke:$darkmaincolor;
+    stroke-width:5px;
+    stroke-linecap:round;
+    stroke-linejoin:bevel;
+    stroke-dasharray: 3500;
+    stroke-dashoffset: 3500;
+    animation: dash 5s infinite backwards;
+  }
+
+  .car{
+    stroke-linecap:round;
+    stroke-linejoin:bevel;
+    fill:$white;
+    stroke:$darkmaincolor;
+    stroke-width:5px;
+    animation: speed 1s infinite cubic-bezier(.17,.67,.83,.67);
+  }
+
+  .smoke{
+    fill:$darkmaincolor;
+    stroke-width:2px;
+    animation: smoky 1s infinite ease-in-out;
+  }
+
+  .light{
+    stroke-width:5px;
+    stroke:$darkmaincolor;
+    stroke-dasharray: 3500;
+    stroke-dashoffset: 3500;
+    animation: dash 6s infinite backwards;
+  }
+
+  .red{
+    fill:#F38BA0;
+  }
+
+  .green{
+    fill:#66DE93;
+  }
+  .yellow{
+    fill:#FFEAC9;
+  }
+}
+
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+@keyframes speed {
+  from{
+    transform: translateY(3px);
+  }
+  to {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes smoky {
+  from{
+    opacity: 0.2;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+    
+  }
+}
+
+

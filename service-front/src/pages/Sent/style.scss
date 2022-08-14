@@ -1,0 +1,18 @@
+@import "../../assets/main.scss";
+
+.messagesent {
+ text-align: center;
+  img{
+    margin: 3% auto;
+  }
+  p{
+    color: $darkmaincolor;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  .mainbutton {
+    margin: 2% auto;
+  }
+}

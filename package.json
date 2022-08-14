@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  },
+  "scripts": {
+    "dev": "concurrently  \"cd service-back && npm run start\" \"cd service-front && npm run start\"  ",
+    "ready" : "concurrently  \"cd service-back && npm ci\" \"cd service-front && npm ci\"  "
+  }
+}

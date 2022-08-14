@@ -1,0 +1,52 @@
+@import "../../assets/main.scss";
+
+.headerpc {
+  width: 100%;
+  margin: 0% auto;
+  position: fixed;
+  top: 0;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    display: block;
+    text-decoration: none;
+    @extend %fontExo;
+    font-weight: 700;
+    width: 100%;
+    height: auto;
+
+    &:hover div {
+      color: $white;
+      background: $darkmaincolor;
+    }
+
+    .navbutton {
+      background: $white;
+      padding: 3% 5%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s all ease-in-out;
+      color: $darkmaincolor;
+      font-size: 2.5em;
+
+      p {
+        margin: 0% 2%;
+      }
+      a {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $firstbreakpoint) {
+  .headerpc {
+    width: 98%;
+    padding: 4%;
+  }
+}

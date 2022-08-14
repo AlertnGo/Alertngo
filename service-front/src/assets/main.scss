@@ -1,0 +1,135 @@
+$maincolor: #00ffff78;
+$darkmaincolor: #2070ca;
+$lightmaincolor: #f1fcff;
+$black: #000000;
+$white: #ffffff;
+$whitesmoke: whitesmoke;
+$grey: #bbbbbb;
+$darkgrey: #1f1f1f;
+$firstbreakpoint: 1024px;
+$danger: #f38ba0;
+$good: #4cff48;
+
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+%fontExo {
+  font-family: "Exo", sans-serif;
+}
+%fontMonts {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 4vh;
+  font-weight: 600;
+  @extend %fontExo;
+  margin: 3% 0%;
+}
+
+h2 {
+  font-size: 3vh;
+  font-weight: 300;
+  @extend %fontMonts;
+}
+
+h3 {
+  font-size: 2.7vh;
+  font-weight: 700;
+  @extend %fontMonts;
+  color: $darkmaincolor;
+  border-bottom: 3px solid $darkmaincolor;
+  margin: 3% 0% 3% 0%;
+  width: max-content;
+  padding: 0.5% 0%;
+}
+
+p,
+span,
+a,
+ul,
+li,
+details,
+summary,
+input,
+label,
+button {
+  line-height: 200%;
+  font-size: 2.3vh;
+  @extend %fontMonts;
+}
+
+h3,
+h4,
+h5,
+span,
+p {
+  margin: 0%;
+}
+
+// style for main
+main {
+  width: 60%;
+  margin: 6% auto;
+}
+
+section {
+  margin: 1% auto;
+}
+
+.error{
+  color: red;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  button {
+    margin: 1% auto;
+    border: none;
+    background: none;
+    color: $danger;
+    padding: 0.5% 3%;
+    border-radius: 50%;
+  }
+}
+
+.specialtext {
+  width: 80%;
+  margin: 10% auto;
+  color: $danger;
+  @extend %fontMonts;
+}
+//buttonstyles
+.mainbutton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  font-size: 3vh;
+  border: none;
+  color: $darkmaincolor;
+  background: $white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 1% 5%;
+  margin: 1% 0% 0% auto;
+  border: 1.5px solid $darkmaincolor;
+
+  p {
+    margin: 0% 10%;
+  }
+
+  &:hover {
+    color: $white;
+    background: $darkmaincolor;
+  }
+}
+
+@media only screen and (max-width: $firstbreakpoint) {
+  main {
+    width: 98%;
+    padding: 4%;
+  }
+}

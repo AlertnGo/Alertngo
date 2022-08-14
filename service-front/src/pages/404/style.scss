@@ -1,0 +1,16 @@
+@import "../../assets/main.scss";
+
+.page404 {
+  text-align: center;
+  h1 {
+    margin: 3% auto;
+    font-size: 10em;
+    color: $darkmaincolor;
+  }
+  a {
+    text-decoration: none;
+  }
+  .mainbutton {
+    margin: 2% auto;
+  }
+}
