@@ -17,8 +17,16 @@ const Places = () => {
     }
   }, []);
 
-  return <main>
-    <h1>kiujhsuid</h1>
-  </main>;
+  return (
+    <main>
+      {error === "" ? null : <p>{error}</p>}
+      <h1>kiujhsuid</h1>
+      <p>
+        {places.map((place) => {
+          return <p>{place.name}</p>;
+        })}
+      </p>
+    </main>
+  );
 };
 export default Places;
