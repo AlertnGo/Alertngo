@@ -3,7 +3,6 @@ const url = "http://localhost:5000/api";
 
 const api = axios.create({
   baseURL: url,
-  timeout: 1000,
   headers: { 'Content-Type': 'application/json' },
 });
 

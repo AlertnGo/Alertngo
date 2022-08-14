@@ -8,29 +8,34 @@ const userController = {
   register: async (req, res) => {
     const { name, email, password } = req.body;
     if (email && password && name) {
-      try {
-        const findUser = await prisma.user.findUnique({
-          where: {
-            email: email,
-          },
-        });
-        if (findUser) {
-          res.json({
-            message: "l'utilisateur exsite déjà",
-          });
-        } else {
-          const salt = await genSalt(10);
-          const hashedPassword = await hash(password, salt);
-          const adduser = await prisma.user.create({
-            data: {
-              email: email,
-              name: name,
-              password: hashedPassword,
-            },
-          });
-          res.status(200).json(adduser);
-        }
-      } catch (e) {}
+      res.json({
+        message: "Vous êtes bien inscrit",
+      });
+      // try {
+      //   const find = await prisma.user.findUnique({
+      //     where: {
+      //       email: email,
+      //     },
+      //   });
+      //   if (find) {
+      //     res.json({
+      //       message: "l'utilisateur exsite déjà",
+      //     });
+      //   } else {
+      //     const salt = await genSalt(10);
+      //     const hashedPassword = await hash(password, salt);
+      //     const adduser = await prisma.user.create({
+      //       data: {
+      //         email: email,
+      //         name: name,
+      //         password: hashedPassword,
+      //       },
+      //     });
+      //     res.status(200).json(adduser);
+      //   }
+      // } catch (e) {
+      //   res.status(500).json(e);
+      // }
     }
   },
 
@@ -47,7 +52,20 @@ const userController = {
         if (findUser) {
           const comparePassword = await compare(password, findUser.password);
           if (comparePassword) {
-            res.status(200).json(findUser);
+            const token = jwt.sign(
+              {
+                
+                userId: findUser.id,
+              },
+              process.env.JWT_SECRET,
+              {
+                expiresIn: "1h",
+              }
+            );
+            res.status(200).json({
+              token,
+              user: findUser,
+            });
           } else {
             res.status(401).json({
               message: "Mot de passe incorrect",

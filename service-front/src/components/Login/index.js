@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
-import Notification from "../Notification";
 import { useHistory } from "react-router-dom";
 //imgs
 import logosvg from "../../assets/imgs/logosvg.svg";
@@ -28,7 +27,7 @@ function Login(props) {
         history.push("/me/profile");
       }
     } catch (error) {
-      setError("Email ou mot de passe incorrect");
+      setError(error.response.data.message || "Il y a eu un problème");
     }
   };
 

@@ -15,19 +15,19 @@ function Signup() {
   const history = useHistory();
 
   const signup = async (e) => {
+    e.preventDefault();
     const user = {
       nom: nom,
       email: email,
       password: password,
     };
     try {
-      e.preventDefault();
       const response = await userServices.signup(user);
-      if (response.status === 201) {
+      if (response.ok) {
         history.push("/me/login");
       }
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.message || "Il y a eu un problème");
     }
   };
 
@@ -79,7 +79,7 @@ function Signup() {
           />
         </label>
         <button className="submitbutton" type="submit">
-        Créer un compte
+          Créer un compte
         </button>
         <p>
           Veuillez remplir correctement les champs ci-dessus pour vous inscrire.
