@@ -36,7 +36,7 @@ function Signup() {
       <div className="container">
         <img src={logosvg} alt="logo" className="mainlogo" />
         <h2>Bienvenue sur AlertnGo</h2>
-        {error === "" ? null : (
+        {error && (
           <Notification notif={error} unsetfunction={() => setError("")} />
         )}
       </div>

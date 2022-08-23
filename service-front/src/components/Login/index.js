@@ -27,7 +27,7 @@ function Login(props) {
         history.push("/me/profile");
       }
     } catch (error) {
-      setError(error.response.data.message || "Il y a eu un problème");
+      setError(error ? error.message : "Il y a eu un problème");
     }
   };
 

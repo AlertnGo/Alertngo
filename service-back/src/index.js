@@ -2,7 +2,6 @@ import express from "express";
 import helmet from "helmet";
 
 import prisma from "../index.js";
-import cors from "cors";
 import userRoute from "./modules/user/userRouter.mjs";
 import carRoute from "./modules/car/carRouter.mjs";
 
@@ -13,18 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/", userRoute);
 app.use("/api/", carRoute);
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    accessControlAllowOrigin: "http://localhost:3000",
-    allowedHeaders: "Content-Type",
-  })
-);
-
-
 
 app.get(`/api`, async (req, res) => {
-  req.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.json("Bienvenu sur le serveur de Alertngo");
 });
 
