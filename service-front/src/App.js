@@ -11,10 +11,12 @@ import Places from "./pages/Places";
 import Sent from "./pages/Sent";
 import Header from "./components/Header";
 import MobileNav from "./components/MobileNav";
+import userContext from './context/user';
 
 function App() {
   return (
     <Router>
+      <userContext.Provider>
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -27,6 +29,7 @@ function App() {
         <Route path="*" component={Page404} />
       </Switch>
       <MobileNav />
+      </userContext.Provider>
     </Router>
   );
 }

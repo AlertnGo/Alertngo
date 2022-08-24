@@ -48,7 +48,7 @@ const userController = {
           },
         });
         if (findUser) {
-          const comparePassword = compare(password, findUser.password);
+          const comparePassword = await compare(password, findUser.password);
           if (comparePassword) {
             const token = jwt.sign(
               {

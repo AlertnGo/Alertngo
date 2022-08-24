@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
 import { useHistory } from "react-router-dom";
+import userContext from "../../context/user";
 //imgs
 import logosvg from "../../assets/imgs/logosvg.svg";
 
 function Login() {
+  const UserContext = useContext(userContext);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,11 +22,13 @@ function Login() {
     try {
       e.preventDefault();
       const response = await userServices.login(user);
-
       if (response.status === 200) {
+        console.log(response.data);
+        UserContext.setUser("vishnu");
         history.push("/me/profile");
       }
     } catch (error) {
+      console.log(error);
       setError(error ? error.message : "Il y a eu un problème");
     }
   };
@@ -32,6 +36,7 @@ function Login() {
   return (
     <section className="connexionform">
       <div className="container">
+        <p>hi {UserContext?.user.name}</p>
         <img src={logosvg} alt="logo" className="mainlogo" />
         <h2>Bienvenue sur AlertnGo</h2>
         {error === "" ? null : <p className="error">{error}</p>}
