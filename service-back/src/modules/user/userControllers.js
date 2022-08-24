@@ -94,7 +94,7 @@ const userController = {
     try {
       const user = await prisma.user.findUnique({
         where: {
-          id: req.params.id,
+          id: JSON.parse(req.params.id),
         },
       });
       if (user) {

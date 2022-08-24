@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 const noop = () => { };
-const defaultContext = {
-    user: "",
+const user = {
+    user: "sdsd",
     setUser: noop,
     refreshUser: noop,
 };
-const userContext = createContext(defaultContext);
+const userContext = createContext(user);
 export default userContext;

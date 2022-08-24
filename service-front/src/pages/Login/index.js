@@ -35,7 +35,7 @@ function Login() {
   return (
     <section className="connexionform">
       <div className="container">
-        <p>hi {UserContext?.user.name}</p>
+        <p>{JSON.stringify(UserContext)}</p>
         <img src={logosvg} alt="logo" className="mainlogo" />
         <h2>Bienvenue sur AlertnGo</h2>
         {error === "" ? null : <p className="error">{error}</p>}

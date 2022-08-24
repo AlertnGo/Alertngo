@@ -17,12 +17,6 @@ const userServices = {
     getAllMyCars: async (id) => {
         return await api.get(`/user/cars/${id}`)
     },
-    changeMyName: async (name , id) => {
-        return await api.patch(`/user/name/${id}` , {name})
-    },
-    changeMyNum: async (num , id) => {
-        return await api.patch(`/user/telephone/${id}` , {num})
-    }
 }
 
 export default userServices;
