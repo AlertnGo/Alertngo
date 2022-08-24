@@ -31,65 +31,63 @@ function Signup() {
   };
 
   return (
-    <main>
-      <section className="connexionform">
-        <div className="container">
-          <img src={logosvg} alt="logo" className="mainlogo" />
-          <h2>Bienvenue sur AlertnGo</h2>
-          {error && <p className="error">{error}</p>}
-        </div>
+    <section className="connexionform">
+      <div className="container">
+        <img src={logosvg} alt="logo" className="mainlogo" />
+        <h2>Bienvenue sur AlertnGo</h2>
+        {error && <p className="error">{error}</p>}
+      </div>
 
-        <form className="fillform" onSubmit={signup}>
-          <label>
-            <p>
-              Email<span>*</span>
-            </p>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              name="email"
-              placeholder="Email"
-              required
-            />
-          </label>
-          <label>
-            <p>
-              Nom<span>*</span>
-            </p>
-            <input
-              onChange={(e) => setNom(e.target.value)}
-              type="text"
-              name="firstname"
-              placeholder="Nom"
-              required
-            />
-          </label>
-          <label>
-            <p>
-              Mot de passe<span>*</span>
-            </p>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              type="text"
-              name="password"
-              placeholder="Mot de passe"
-              required
-            />
-          </label>
-          <button className="submitbutton" type="submit">
-            Créer un compte
-          </button>
+      <form className="fillform" onSubmit={signup}>
+        <label>
           <p>
-            Veuillez remplir correctement les champs ci-dessus pour vous
-            inscrire. Si vous êtes déjà inscrit, veuillez vous connecter en
-            cliquant sur le lien ci-dessous.
+            Email<span>*</span>
           </p>
-          <Link to="/me/login" className="linkbuttons">
-            Se connecter
-          </Link>
-        </form>
-      </section>
-    </main>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            name="email"
+            placeholder="Email"
+            required
+          />
+        </label>
+        <label>
+          <p>
+            Nom<span>*</span>
+          </p>
+          <input
+            onChange={(e) => setNom(e.target.value)}
+            type="text"
+            name="firstname"
+            placeholder="Nom"
+            required
+          />
+        </label>
+        <label>
+          <p>
+            Mot de passe<span>*</span>
+          </p>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            name="password"
+            placeholder="Mot de passe"
+            required
+          />
+        </label>
+        <button className="submitbutton" type="submit">
+          Créer un compte
+        </button>
+        <p>
+          Veuillez remplir correctement les champs ci-dessus pour vous inscrire.
+          Si vous êtes déjà inscrit, veuillez vous connecter en cliquant sur le
+          lien ci-dessous.
+        </p>
+        <Link to="/me/login" className="linkbuttons">
+          Se connecter
+        </Link>
+      </form>
+    </section>
   );
 }
 export default Signup;

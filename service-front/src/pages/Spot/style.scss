@@ -1,15 +1,19 @@
 @import "../../assets/main.scss";
 
-.biggie-button {
-  background: $darkmaincolor;
-  color: white;
-  display: block;
+.biggieButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: auto;
   border: none;
-  width: auto;
-  height: 100px;
-  padding: 3% 5%;
+  color: $darkmaincolor;
+  background: $white;
+  border-radius: 5px;
   cursor: pointer;
-  margin: 30% auto;
+  padding: 1% 5%;
+  margin: 20% auto 5% auto;
+  border: 1.5px solid $darkmaincolor;
 
   &:hover {
     background: $white;

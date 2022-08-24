@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Notification from "../../components/Notification";
 import { VoitureService } from "../../services";
 
 //components
 import MessagesOptions from "../../components/MessagesOptions";
 import DefaultAnimation from "../../components/DefaultAnimation";
-
 
 //icons
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
@@ -37,25 +35,23 @@ const Home = () => {
     }
   };
 
-  const unset = async () => {
-    setNotif(false);
-  };
-
   return (
     <main>
       <section>
         <form className="mainform">
           <label>
             Saisissez le numéro de la plaque d'immatriculation pour trouver et
-            signaler une alerte ou pour envoyer un message. Si le message ne
-            respecte pas notre politique, le message ne sera pas envoyé à
-            l'utilisateur. Faites donc attention lorsque vous envoyez un
-            message.
+            signaler une alerte ou pour envoyer un message.
+            {notif ? (
+              <p className="error">
+                Veuillez saisir un numéro de plaque d'immatriculation valide  
+              </p>
+            ) : null}
             <input
               className="searchBar"
               type="text"
               name="ndp"
-              placeholder="AA000AA"
+              placeholder="AA 000 AA"
               maxLength="07"
               autoComplete="off"
               onChange={(e) => {
@@ -64,31 +60,25 @@ const Home = () => {
             />
           </label>
           <button className="mainbutton" onClick={getCar}>
-            <p>Rechercher</p>
             <SearchOutlinedIcon />
+            <p>Rechercher</p>
           </button>
         </form>
-        {notif ? (
-          <Notification
-            notif="Veuillez saisir un numéro de plaque d'immatriculation"
-            unsetfunction={unset}
-          />
-        ) : null}
       </section>
       {userInfo ? (
         <MessagesOptions />
       ) : userInfo === undefined ? (
         <div className="NotFound">
-        <p className="redflag">
-          Malheureusement le numéro de plaque d'immatriculation que vous avez
-          recherché n'est pas enregistré sur AlernGo. Nous sommes vraiment désolés
-          pour le désagrément.
-        </p>
-        <p className="redflag">
-          Vous pouvez chercher un d'autre numéro de plaque d'immatriculation quand
-          vous souhaitez 🤗.
-        </p>
-      </div>
+          <p className="redflag">
+            Malheureusement le numéro de plaque d'immatriculation que vous avez
+            recherché n'est pas enregistré sur AlernGo. Nous sommes vraiment
+            désolés pour le désagrément.
+          </p>
+          <p className="redflag">
+            Vous pouvez chercher un d'autre numéro de plaque d'immatriculation
+            quand vous souhaitez 🤗.
+          </p>
+        </div>
       ) : (
         <DefaultAnimation />
       )}

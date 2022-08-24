@@ -15,13 +15,13 @@ const Spot = () => {
   };
   return (
     <main>
-      <button className="biggie-button" onClick={spotThisPlace}>
-        Place cet spot comme parking
-      </button>
       <p className="info">
         Assurez-vous bien que vous êtes sur le lieu ou vous êtes proche de 2m du
         lieu. sinon les utilisateurs ne trouveront pas votre spot.
       </p>
+      <button className="biggieButton" onClick={spotThisPlace}>
+        Place cet spot comme parking
+      </button>
     </main>
   );
 };

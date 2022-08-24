@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
+import { GoLocation } from "react-icons/go";
 import "./style.scss";
 
 const Places = () => {
@@ -25,10 +27,10 @@ const Places = () => {
 
       {places?.map((place) => {
         return (
-          <div key={place.id} className="place">
+          <Link key={place.id} className="place" target="_blanc" to="www.google.com">
+            <GoLocation />
             <p>{place.name}</p>
-            <p>{place.description}</p>
-          </div>
+          </Link>
         );
       })}
     </main>
