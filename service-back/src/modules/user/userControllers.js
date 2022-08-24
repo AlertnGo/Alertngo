@@ -6,36 +6,33 @@ const prisma = new PrismaClient();
 const userController = {
   //register
   register: async (req, res) => {
-    const { name, email, password } = req.body;
-    if (email && password && name) {
-      res.json({
-        message: "Vous êtes bien inscrit",
-      });
-      // try {
-      //   const find = await prisma.user.findUnique({
-      //     where: {
-      //       email: email,
-      //     },
-      //   });
-      //   if (find) {
-      //     res.json({
-      //       message: "l'utilisateur exsite déjà",
-      //     });
-      //   } else {
-      //     const salt = await genSalt(10);
-      //     const hashedPassword = await hash(password, salt);
-      //     const adduser = await prisma.user.create({
-      //       data: {
-      //         email: email,
-      //         name: name,
-      //         password: hashedPassword,
-      //       },
-      //     });
-      //     res.status(200).json(adduser);
-      //   }
-      // } catch (e) {
-      //   res.status(500).json(e);
-      // }
+    const { nom, email, password } = req.body;
+    if (email && password && nom) {
+      console.log("yes");
+      try {
+        const find = await prisma.user.findUnique({
+          where: {
+            email: email,
+          },
+        });
+        console.log(find, "yesssssssssssssssssss");
+        if (find) {
+          res.status(409).json({ message: "l'utilisateur exsite déjà" });
+        } else {
+          const salt = await genSalt(10);
+          const hashedPassword = await hash(password, salt);
+          const adduser = await prisma.user.create({
+            data: {
+              email: email,
+              name: nom,
+              password: hashedPassword,
+            },
+          });
+          res.status(200).json(adduser);
+        }
+      } catch (e) {
+        res.status(500).json(e);
+      }
     }
   },
 
@@ -54,7 +51,6 @@ const userController = {
           if (comparePassword) {
             const token = jwt.sign(
               {
-                
                 userId: findUser.id,
               },
               process.env.JWT_SECRET,
@@ -92,23 +88,23 @@ const userController = {
     }
   },
 
-  //get user by id
-  findUser: async (req, res) => {
-    try {
-      const user = await prisma.user.findUnique({
-        where: {
-          id: req.params.id,
-        },
-      });
-      if (user) {
-        res.status(200).json(user);
-      } else {
-        res.status(404);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  },
+  // //get user by id
+  // findUser: async (req, res) => {
+  //   try {
+  //     const user = await prisma.user.findUnique({
+  //       where: {
+  //         id: req.params.id,
+  //       },
+  //     });
+  //     if (user) {
+  //       res.status(200).json(user);
+  //     } else {
+  //       res.status(404);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // },
 };
 
 export default userController;

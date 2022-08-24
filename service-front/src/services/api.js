@@ -3,10 +3,10 @@ const url = "http://localhost:5000/api";
 
 const api = axios.create({
   baseURL: url,
-  headers: { 'Content-Type': 'application/json' },
-  
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
-
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");

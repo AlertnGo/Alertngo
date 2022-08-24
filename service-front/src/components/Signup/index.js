@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
-import Notification from "../Notification";
 import { useHistory } from "react-router-dom";
 //imgs
 import logosvg from "../../assets/imgs/logosvg.svg";
@@ -23,11 +22,12 @@ function Signup() {
     };
     try {
       const response = await userServices.signup(user);
-      if (response.ok) {
-        history.push("/me/login");
+      console.log(response);
+      if (response.status === 200) {
+        history.push("/");
       }
     } catch (error) {
-      setError(error.message || "Il y a eu un problème");
+      setError(error.response.data.message || "Il y a eu un problème");
     }
   };
 
@@ -36,9 +36,7 @@ function Signup() {
       <div className="container">
         <img src={logosvg} alt="logo" className="mainlogo" />
         <h2>Bienvenue sur AlertnGo</h2>
-        {error && (
-          <Notification notif={error} unsetfunction={() => setError("")} />
-        )}
+        {error && <p className="error">{error}</p>}
       </div>
 
       <form className="fillform" onSubmit={signup}>

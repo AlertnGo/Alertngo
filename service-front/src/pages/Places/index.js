@@ -23,16 +23,14 @@ const Places = () => {
     <main>
       {error === "" ? null : <p>{error}</p>}
 
-      <p>
-        {places?.map((place) => {
-          return (
-            <div key={place.id} className="place">
-              <p>{place.name}</p>
-              <p>{place.description}</p>
-            </div>
-          );
-        })}
-      </p>
+      {places?.map((place) => {
+        return (
+          <div key={place.id} className="place">
+            <p>{place.name}</p>
+            <p>{place.description}</p>
+          </div>
+        );
+      })}
     </main>
   );
 };
