@@ -22,7 +22,7 @@ function MyProfile() {
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
-  const userid = 1;
+  const userid = 10;
 
   useEffect(() => {
     getProfile();
