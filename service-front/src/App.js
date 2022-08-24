@@ -10,6 +10,7 @@ import Spot from "./pages/Spot";
 import Places from "./pages/Places";
 import Sent from "./pages/Sent";
 import Header from "./components/Header";
+import MobileNav from "./components/MobileNav";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/sent" component={Sent} />
         <Route path="*" component={Page404} />
       </Switch>
+      <MobileNav />
     </Router>
   );
 }

@@ -46,7 +46,6 @@
 
 @media only screen and (max-width: $firstbreakpoint) {
   .headerpc {
-    width: 98%;
-    padding: 4%;
+    display: none;
   }
 }

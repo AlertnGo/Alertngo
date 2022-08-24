@@ -1,0 +1,26 @@
+@import "../../assets/main.scss";
+
+.mobileNav {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  background: white;
+  padding: 2%;
+  width: 100%;
+
+  .navs {
+    display: flex;
+    justify-content: space-around;
+
+    a {
+      color: $darkmaincolor;
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media only screen and (max-width: $firstbreakpoint) {
+  .mobileNav {
+    display: block;
+  }
+}

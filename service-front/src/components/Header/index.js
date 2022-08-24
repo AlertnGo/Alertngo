@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-function Header(props) {
+function Header() {
   return (
     <header>
       <div className="headerpc">
