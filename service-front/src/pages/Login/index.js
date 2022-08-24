@@ -28,7 +28,7 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
-      setError(error ? error.message : "Il y a eu un problème");
+      setError(error ? error.response.data.message : "Il y a eu un problème");
     }
   };
 

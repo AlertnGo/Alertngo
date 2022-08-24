@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 
 //componants
 import AddPage from "../../components/Addpage";
-import Notification from "../../components/Notification";
 //icons
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
@@ -19,10 +18,8 @@ function MyProfile() {
   const [myCars] = useState([]);
   const [newNdp, setNewNdp] = useState("");
   const [newName, setNewName] = useState("");
-  const [newNum, setNewNum] = useState("");
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
-  const [numToggle, setNumToggle] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
   const userid = 1;
@@ -40,15 +37,14 @@ function MyProfile() {
     }
   };
 
-  const getVehicles = async () => {
-    try {
-      const response = await userServices.getAllMyCars(userid);
-
-      console.log(response.data.data);
-    } catch (error) {
-      setError(error);
-    }
-  };
+  // const getVehicles = async () => {
+  //   try {
+  //     const response = await userServices.getAllMyCars(userid);
+  //     console.log(response.data.data);
+  //   } catch (error) {
+  //     setError(error);
+  //   }
+  // };
 
   const addNew = async (e) => {
     const ndp = newNdp;
@@ -73,18 +69,7 @@ function MyProfile() {
       setNewName("");
       setNameToggle(!nameToggle);
     } catch (error) {
-      setError(error.response.data.message);
-    }
-  };
-
-  const changeNum = async (e) => {
-    e.preventDefault();
-    try {
-      await userServices.changeMyNum(newNum, userid);
-      setNewName("");
-      setNumToggle(!numToggle);
-    } catch (error) {
-      setError(error.response.data.message);
+      setError(error.message);
     }
   };
 
@@ -107,6 +92,8 @@ function MyProfile() {
       <section className="myprofile">
         <section className="devider">
           <h3>Mes Informations</h3>
+          {error === "" ? null : <p className="error">{error} </p>}
+
           <div className="infos">
             <div className="infodiv">
               <h2>{myinfo.name}</h2>
@@ -126,26 +113,6 @@ function MyProfile() {
                 placeholder={myinfo.name}
                 max="20"
                 cancel={() => setNameToggle(!nameToggle)}
-              />
-            ) : null}
-            <div className="infodiv">
-              <h2>{myinfo.email}</h2>
-              <button
-                className="button"
-                onClick={() => setNumToggle(!numToggle)}
-              >
-                <EditRoundedIcon />
-                <p>Modifier</p>
-              </button>
-            </div>
-            {numToggle === true ? (
-              <AddPage
-                addeSubmit={changeNum}
-                lable="Num"
-                change={(e) => setNewNum(e.target.value)}
-                placeholder={myinfo.telephone}
-                max="10"
-                cancel={() => setNumToggle(!numToggle)}
               />
             ) : null}
 
@@ -201,9 +168,6 @@ function MyProfile() {
             <p>Ajouter</p>
           </button>
         </section>
-        {error === "" ? null : (
-          <Notification notif={error} unsetfunction={() => setError("")} />
-        )}
       </section>
     </main>
   );
