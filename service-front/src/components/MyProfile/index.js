@@ -31,24 +31,24 @@ function MyProfile() {
     history.push("/me/login");
   }
 
-  // const getProfile = async () => {
-  //   try {
-  //     const response = await userServices.profil(userid);
-  //     setMyinfo(response.data.data[0]);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const getProfile = async () => {
+    try {
+      const response = await userServices.profil(userid);
+      console.log(response.data.data[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const getVehicles = async () => {
-  //   try {
-  //     const response = await userServices.getAllMyCars(userid);
+  const getVehicles = async () => {
+    try {
+      const response = await userServices.getAllMyCars(userid);
 
-  //     setMyCars(response.data.data);
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  // };
+      console.log(response.data.data);
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   const addNew = async (e) => {
     const ndp = newNdp;

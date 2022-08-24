@@ -22,7 +22,6 @@ function Signup() {
     };
     try {
       const response = await userServices.signup(user);
-      console.log(response);
       if (response.status === 200) {
         history.push("/");
       }

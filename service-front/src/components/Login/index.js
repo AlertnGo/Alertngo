@@ -22,8 +22,6 @@ function Login() {
       const response = await userServices.login(user);
 
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("id", response.data.user.userId);
         history.push("/me/profile");
       }
     } catch (error) {

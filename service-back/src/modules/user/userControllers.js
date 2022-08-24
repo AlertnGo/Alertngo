@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { compare, genSalt, hash } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 
@@ -47,7 +48,7 @@ const userController = {
           },
         });
         if (findUser) {
-          const comparePassword = await compare(password, findUser.password);
+          const comparePassword = compare(password, findUser.password);
           if (comparePassword) {
             const token = jwt.sign(
               {
@@ -88,23 +89,23 @@ const userController = {
     }
   },
 
-  // //get user by id
-  // findUser: async (req, res) => {
-  //   try {
-  //     const user = await prisma.user.findUnique({
-  //       where: {
-  //         id: req.params.id,
-  //       },
-  //     });
-  //     if (user) {
-  //       res.status(200).json(user);
-  //     } else {
-  //       res.status(404);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // },
+  //get user by id
+  findUser: async (req, res) => {
+    try {
+      const user = await prisma.user.findUnique({
+        where: {
+          id: req.params.id,
+        },
+      });
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(404);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 
 export default userController;
