@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import "./style.scss";
 import Notification from "../../components/Notification";
 import { VoitureService } from "../../services";
 
 //components
 import MessagesOptions from "../../components/MessagesOptions";
 import DefaultAnimation from "../../components/DefaultAnimation";
-import NotFound from "../../components/NotFound";
+
 
 //icons
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
+import "./style.scss";
 
 const Home = () => {
   const [ndp, setNdp] = useState("");
@@ -78,7 +78,17 @@ const Home = () => {
       {userInfo ? (
         <MessagesOptions />
       ) : userInfo === undefined ? (
-        <NotFound />
+        <div className="NotFound">
+        <p className="redflag">
+          Malheureusement le numéro de plaque d'immatriculation que vous avez
+          recherché n'est pas enregistré sur AlernGo. Nous sommes vraiment désolés
+          pour le désagrément.
+        </p>
+        <p className="redflag">
+          Vous pouvez chercher un d'autre numéro de plaque d'immatriculation quand
+          vous souhaitez 🤗.
+        </p>
+      </div>
       ) : (
         <DefaultAnimation />
       )}

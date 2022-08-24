@@ -1,8 +1,8 @@
 @import "../../assets/main.scss";
 
 .mainform {
-  label{
-    color:$black;
+  label {
+    color: $black;
   }
   .searchBar {
     width: 100%;
@@ -17,11 +17,21 @@
     background: $white;
     border-radius: 5px;
     color: $darkmaincolor;
-
-    
   }
-  ::placeholder { 
+  ::placeholder {
     color: $black;
     opacity: 0.1; /* Firefox */
+  }
+
+  .NotFound {
+    border-radius: 20px;
+    margin: 5% auto;
+    border: 3px solid $danger;
+    padding: 7% 2%;
+    background: $white;
+    .redflag {
+      padding: 1%;
+      color: $darkgrey;
+    }
   }
 }
