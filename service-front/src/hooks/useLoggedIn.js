@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import userContext from "../context/user";
+import {userContext} from "../context/user";
 
 const useLoggedIn = () => {
   const context = useContext(userContext);

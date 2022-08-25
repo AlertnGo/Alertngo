@@ -11,25 +11,25 @@ import Places from "./pages/Places";
 import Sent from "./pages/Sent";
 import Header from "./components/Header";
 import MobileNav from "./components/MobileNav";
-import userContext from './context/user';
+import { UserContextProvider } from "./context/user";
 
 function App() {
   return (
     <Router>
-      <userContext.Provider>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/spot" component={Spot} />
-        <Route exact path="/place" component={Places} />
-        <Route exact path="/me/profile" component={Me} />
-        <Route exact path="/me/signup" component={Signup} />
-        <Route exact path="/me/login" component={Login} />
-        <Route exact path="/sent" component={Sent} />
-        <Route path="*" component={Page404} />
-      </Switch>
-      <MobileNav />
-      </userContext.Provider>
+      <UserContextProvider>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/spot" component={Spot} />
+          <Route exact path="/place" component={Places} />
+          <Route exact path="/me/profile" component={Me} />
+          <Route exact path="/me/signup" component={Signup} />
+          <Route exact path="/me/login" component={Login} />
+          <Route exact path="/sent" component={Sent} />
+          <Route path="*" component={Page404} />
+        </Switch>
+        <MobileNav />
+      </UserContextProvider>
     </Router>
   );
 }

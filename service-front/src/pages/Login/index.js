@@ -1,14 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
 import { useHistory } from "react-router-dom";
-import userContext from "../../context/user";
-//imgs
+
 import logosvg from "../../assets/imgs/logosvg.svg";
 import "../Signup/style.scss";
 
 function Login() {
-  const UserContext = useContext(userContext);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,14 +26,14 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
-      setError(error ? error.response.data.message : "Il y a eu un problème");
+      // setError(error ? error.response.data.message : "Il y a eu un problème");
+      setError(error ? error.message : "Il y a eu un problème");
     }
   };
 
   return (
     <section className="connexionform">
       <div className="container">
-        <p>{JSON.stringify(UserContext)}</p>
         <img src={logosvg} alt="logo" className="mainlogo" />
         <h2>Bienvenue sur AlertnGo</h2>
         {error === "" ? null : <p className="error">{error}</p>}

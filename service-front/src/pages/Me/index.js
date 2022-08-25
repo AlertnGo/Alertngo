@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./style.scss";
 import userServices from "../../services/userService";
 import voitureService from "../../services/voitureService";
 import { useHistory } from "react-router-dom";
-import useLoggedIn from '../../hooks/useLoggedIn'
+import useLoggedIn from "../../hooks/useLoggedIn";
+import { userContext } from "../../context/user";
 
 //componants
 import AddPage from "../../components/Addpage";
@@ -15,6 +16,7 @@ import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 
 function MyProfile() {
+  const user = useContext(userContext);
   const [myinfo, setMyInfo] = useState([]);
   const [myCars] = useState([]);
   const [newNdp, setNewNdp] = useState("");
@@ -25,7 +27,6 @@ function MyProfile() {
   const history = useHistory();
   const userid = 10;
 
-  
   useEffect(() => {
     getProfile();
   }, []);
@@ -93,9 +94,9 @@ function MyProfile() {
     <main>
       <section className="myprofile">
         <section className="devider">
+          {JSON.stringify(user)}
           <h3>Mes Informations</h3>
           {error === "" ? null : <p className="error">{error} </p>}
-
           <div className="infos">
             <div className="infodiv">
               <h2>{myinfo.name}</h2>
