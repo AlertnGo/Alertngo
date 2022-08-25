@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.scss";
 
+import map from '../../assets/imgs/map.gif';
+
 const Spot = () => {
   const spotThisPlace = () => {
     if (navigator.geolocation) {
@@ -15,13 +17,15 @@ const Spot = () => {
   };
   return (
     <main>
+    
+      <img src={map} alt="Logo" className="mapIcon" />
+      <button className="biggieButton" onClick={spotThisPlace}>
+        Place cet spot comme parking
+      </button>
       <p className="info">
         Assurez-vous bien que vous êtes sur le lieu ou vous êtes proche de 2m du
         lieu. sinon les utilisateurs ne trouveront pas votre spot.
       </p>
-      <button className="biggieButton" onClick={spotThisPlace}>
-        Place cet spot comme parking
-      </button>
     </main>
   );
 };

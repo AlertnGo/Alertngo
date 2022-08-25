@@ -3,6 +3,7 @@ import "./style.scss";
 import userServices from "../../services/userService";
 import voitureService from "../../services/voitureService";
 import { useHistory } from "react-router-dom";
+import useLoggedIn from '../../hooks/useLoggedIn'
 
 //componants
 import AddPage from "../../components/Addpage";
@@ -24,6 +25,7 @@ function MyProfile() {
   const history = useHistory();
   const userid = 10;
 
+  
   useEffect(() => {
     getProfile();
   }, []);
