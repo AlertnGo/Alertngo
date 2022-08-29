@@ -1,7 +1,8 @@
-import React, {  useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../context/user";
 
 import logosvg from "../../assets/imgs/logosvg.svg";
 import "../Signup/style.scss";
@@ -11,8 +12,9 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const { login } = useContext(UserContext);
 
-  const login = async (e) => {
+  const GetLogin = async (e) => {
     const user = {
       email: email,
       password: password,
@@ -21,6 +23,7 @@ function Login() {
       e.preventDefault();
       const response = await userServices.login(user);
       if (response.status === 200) {
+        login(response.data);
         console.log(response.data);
         history.push("/me/profile");
       }
@@ -39,7 +42,7 @@ function Login() {
         {error === "" ? null : <p className="error">{error}</p>}
       </div>
 
-      <form className="fillform" onSubmit={login}>
+      <form className="fillform" onSubmit={GetLogin}>
         <label>
           <p>
             Email<span>*</span>

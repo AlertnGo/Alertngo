@@ -3,9 +3,7 @@ import "./style.scss";
 import userServices from "../../services/userService";
 import voitureService from "../../services/voitureService";
 import { useHistory } from "react-router-dom";
-
-import useLoggedIn from "../../hooks/useLoggedIn";
-import { userContext } from "../../context/user";
+import { UserContext } from "../../context/user";
 
 //componants
 import AddPage from "../../components/Addpage";
@@ -17,7 +15,7 @@ import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 
 function MyProfile() {
-  const user = useContext(userContext);
+  const { user } = useContext(UserContext);
   const [myinfo, setMyInfo] = useState([]);
   const [myCars] = useState([]);
   const [newNdp, setNewNdp] = useState("");
@@ -27,19 +25,6 @@ function MyProfile() {
   const [error, setError] = useState("");
   const history = useHistory();
   const userid = 10;
-
-  useEffect(() => {
-    getProfile();
-  }, []);
-
-  const getProfile = async () => {
-    try {
-      const response = await userServices.profil(userid);
-      setMyInfo(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   // const getVehicles = async () => {
   //   try {
@@ -95,7 +80,7 @@ function MyProfile() {
     <main>
       <section className="myprofile">
         <section className="devider">
-          {JSON.stringify(user)}
+          {JSON.stringify(user?.name)}
           <h3>Mes Informations</h3>
           {error === "" ? null : <p className="error">{error} </p>}
           <div className="infos">

@@ -1,20 +1,37 @@
-import React, { createContext, useState, useCallback } from "react";
+import { createContext, useState } from "react";
 
-// create context
-const userContext = createContext();
+const UserContext = createContext({
+  name: "",
+  token: "",
+  avatar: "",
+  auth: false,
+});
 
-const UserContextProvider = ({ children, data }) => {
-  // the value that will be given to the context
-  const [user, setUser] = useState(null);
+const UserProvider = ({ children }) => {
+  // User is the name of the "data" that gets stored in context
+  const [user, setUser] = useState({ name: "", auth: true });
 
-  // const saveUser = useCallback(() => {
-  //   setUser(data);
-  // }, [data]);
+  // Login updates the user data with a name parameter
+  const login = (name) => {
+    setUser((user) => ({
+      name: name,
+      auth: true,
+    }));
+  };
+
+  // Logout updates the user data to default
+  const logout = () => {
+    setUser((user) => ({
+      name: "",
+      auth: false,
+    }));
+  };
 
   return (
-    // the Provider gives access to the context to its children
-    <userContext.Provider value={user}>{children}</userContext.Provider>
+    <UserContext.Provider value={{ user, login, logout }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 
-export { userContext, UserContextProvider };
+export { UserProvider, UserContext };
