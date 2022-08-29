@@ -1,15 +1,14 @@
-import { useContext, useEffect } from "react";
-import {userContext} from "../context/user";
+import { useContext, useEffect, useHistory } from "react";
+import { UserContext } from "../context/user";
 
 const useLoggedIn = () => {
-  const context = useContext(userContext);
-
+  const user = useContext(UserContext);
 
   useEffect(() => {
-    if (!context.user) {
-      alert("dfd")
+    if (!user.user.token) {
+      alert("please log in");
     }
-  }, [context.user]);
+  }, [user]);
 };
 
 export default useLoggedIn;

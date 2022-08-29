@@ -24,7 +24,6 @@ function Login() {
       const response = await userServices.login(user);
       if (response.status === 200) {
         login(response.data);
-        console.log(response.data);
         history.push("/me/profile");
       }
     } catch (error) {
