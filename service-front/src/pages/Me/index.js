@@ -85,7 +85,7 @@ function MyProfile() {
           {error === "" ? null : <p className="error">{error} </p>}
           <div className="infos">
             <div className="infodiv">
-              {/* <h2>{user && user?.user.name}</h2> */}
+              <h2>{user?.user?.name}</h2>
               <button
                 className="button"
                 onClick={() => setNameToggle(!nameToggle)}
@@ -99,7 +99,7 @@ function MyProfile() {
                 addeSubmit={changeName}
                 lable="Name"
                 change={(e) => setNewName(e.target.value)}
-                placeholder={user?.user.name}
+                placeholder={user?.user?.name}
                 max="20"
                 cancel={() => setNameToggle(!nameToggle)}
               />
