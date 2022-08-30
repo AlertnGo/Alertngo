@@ -5,7 +5,8 @@ const route = "/car";
 const carRouter = Router();
 
 carRouter.route(`${route}`).post(carController.addCar);
-carRouter.route(`${route}`).get(carController.getAllCar);
+carRouter.route(`${route}/:id`).get(carController.getAllCar);
+carRouter.route(`${route}/:id`).delete(carController.deleteCar);
 carRouter.route(`${route}/:id`).get(carController.findCar);
 carRouter.route(`${route}/:id`).put(carController.updateCar);
 

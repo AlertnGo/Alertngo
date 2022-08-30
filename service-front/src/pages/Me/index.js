@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import userServices from "../../services/userService";
 import voitureService from "../../services/voitureService";
 import { useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 function MyProfile() {
   useLoggedIn();
   const { logout, user } = useContext(UserContext);
-  const [myCars] = useState([]);
+  const [myCars, setMyCars] = useState([]);
   const [newNdp, setNewNdp] = useState("");
   const [newName, setNewName] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -28,23 +28,38 @@ function MyProfile() {
   const userid = user?.user?.id;
   console.log(userid);
 
-  // const getVehicles = async () => {
-  //   try {
-  //     const response = await userServices.getAllMyCars(userid);
-  //     console.log(response.data.data);
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  // };
+  const getVehicles = async () => {
+    try {
+      const response = await voitureService.getAllByUser(userid);
+      setMyCars(response.data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const deleteOneCar = async (e) => {
+    const id = e.currentTarget.id;
+    try {
+      await voitureService.deleteCar(id);
+      getVehicles();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getVehicles();
+  }, []);
 
   const addNew = async (e) => {
-    const title = newNdp;
-    const userId = userid ;
     e.preventDefault();
+    const title = newNdp;
+    const userId = userid;
     try {
       await voitureService.addCar(title, userId);
       setNewNdp("");
       setToggle(!toggle);
+      getVehicles();
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -68,15 +83,6 @@ function MyProfile() {
   const signout = async () => {
     logout();
     history.push("/me/login");
-  };
-
-  const deleteOneCar = async (e) => {
-    const id = e.currentTarget.id;
-    try {
-      await voitureService.deleteCar(id);
-    } catch (error) {
-      setError(error);
-    }
   };
 
   return (
@@ -134,7 +140,7 @@ function MyProfile() {
             ) : null}
             {myCars.map((car, index) => (
               <div className="ndpdiv" key={index}>
-                <p className="ndplate">{car.ndp}</p>
+                <p className="ndplate">{car.title}</p>
                 <div className="buttonset">
                   <button className="button" id={car.id} onClick={deleteOneCar}>
                     <DeleteRoundedIcon />

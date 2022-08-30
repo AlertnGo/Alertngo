@@ -6,7 +6,11 @@ const carController = {
   //get all car
   getAllCar: async (req, res) => {
     try {
-      const cars = await prisma.car.findMany();
+      const cars = await prisma.car.findMany({
+        where: {
+          userId: JSON.parse(req.params.id),
+        },
+      });
       res.status(200).json(cars);
     } catch (e) {
       console.log(e);
@@ -59,6 +63,19 @@ const carController = {
         },
       });
       res.status(200).json(car);
+    } catch (e) {
+      console.log(e);
+    }
+  },
+
+  deleteCar: async (req, res) => {
+    try {
+      await prisma.car.delete({
+        where: {
+          id:JSON.parse(req.params.id) ,
+        },
+      });
+      res.status(200).json("C'est fait");
     } catch (e) {
       console.log(e);
     }

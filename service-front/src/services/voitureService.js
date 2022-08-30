@@ -7,8 +7,11 @@ const VoitureService = {
   deleteCar: async (id) => {
     return await api.delete(`/car/${id}`);
   },
-  addCar: async (title, userid) => {
-    return await api.post("/car", { title, userid });
+  addCar: async (title, userId) => {
+    return await api.post("/car", { title, userId });
+  },
+  getAllByUser: async (id) => {
+    return await api.get(`/car/${id}`);
   },
 };
 
