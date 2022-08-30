@@ -19,10 +19,12 @@ const carController = {
 
   //get car by id
   findCar: async (req, res) => {
+    const { title } = req.body;
+
     try {
       const car = await prisma.car.findUnique({
         where: {
-          id: req.params.id,
+          title: JSON.stringify(title),
         },
       });
       if (car) {
@@ -72,7 +74,7 @@ const carController = {
     try {
       await prisma.car.delete({
         where: {
-          id:JSON.parse(req.params.id) ,
+          id: JSON.parse(req.params.id),
         },
       });
       res.status(200).json("C'est fait");

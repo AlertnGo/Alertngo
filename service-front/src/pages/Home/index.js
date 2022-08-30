@@ -17,11 +17,12 @@ const Home = () => {
 
   const getCar = async (event) => {
     event.preventDefault();
-    if (ndp === "") {
+    const title = ndp ;
+    if (title === "") {
       setNotif(true);
     } else {
       try {
-        const userData = await VoitureService.getByNdp(ndp);
+        const userData = await VoitureService.getByNdp(title);
         const userDataNum = userData.data.data[0].telephone;
         SetUserInfo(userDataNum);
       } catch (error) {
