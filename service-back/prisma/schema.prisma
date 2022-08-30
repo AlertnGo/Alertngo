@@ -13,8 +13,6 @@ model User {
   email   String    @unique
   password String?
   name    String?
-  cars    Car[]
-  annonce Annonce[]
   avatar  String?
 }
 
@@ -23,7 +21,6 @@ model Car {
   title  String  @db.VarChar(10)
   active Boolean @default(true)
   userId Int
-  user   User    @relation(fields: [userId], references: [id])
 }
 
 model Message {
@@ -36,7 +33,6 @@ model Annonce {
   title  String  @db.VarChar(10)
   active Boolean @default(true)
   userId Int
-  user   User    @relation(fields: [userId], references: [id])
 }
 
 

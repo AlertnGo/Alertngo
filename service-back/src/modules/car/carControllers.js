@@ -33,12 +33,12 @@ const carController = {
 
   //add car
   addCar: async (req, res) => {
-
-    const { title } = req.body;
+    const { title, userId } = req.body;
     try {
       const car = await prisma.car.create({
         data: {
-         title
+          title: title,
+          userId: userId,
         },
       });
       res.status(201).json(car);

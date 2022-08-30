@@ -25,7 +25,8 @@ function MyProfile() {
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
-  const userid = 10;
+  const userid = user?.user?.id;
+  console.log(userid);
 
   // const getVehicles = async () => {
   //   try {
@@ -37,10 +38,11 @@ function MyProfile() {
   // };
 
   const addNew = async (e) => {
-    const ndp = newNdp;
+    const title = newNdp;
+    const userId = userid ;
     e.preventDefault();
     try {
-      await voitureService.addCar(ndp, userid);
+      await voitureService.addCar(title, userId);
       setNewNdp("");
       setToggle(!toggle);
     } catch (error) {
