@@ -1,4 +1,4 @@
-import { useContext, useEffect, useHistory } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../context/user";
 
 const useLoggedIn = () => {
