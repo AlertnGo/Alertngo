@@ -7,9 +7,6 @@ const userServices = {
     login: async (user) => {
         return await api.post('/user/login', user)
     },
-    getAll: async () => {
-        return await api.get('/user')
-    },
     profil: async (id) => {
         const url = "/user/" + id
         return await api.get (url)
@@ -17,6 +14,10 @@ const userServices = {
     getAllMyCars: async (id) => {
         return await api.get(`/user/cars/${id}`)
     },
+    getAll: async () => {
+        return await api.get('/user')
+    },
 }
 
 export default userServices;
+

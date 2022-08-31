@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 const prisma = new PrismaClient();
 
 const userController = {
-  //register
   register: async (req, res) => {
     const { nom, email, password } = req.body;
     if (email && password && nom) {
@@ -16,7 +15,6 @@ const userController = {
             email: email,
           },
         });
-        console.log(find, "yesssssssssssssssssss");
         if (find) {
           res.status(409).json({ message: "l'utilisateur exsite déjà" });
         } else {
