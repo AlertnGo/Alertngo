@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import userServices from "../../services/userService";
 import voitureService from "../../services/voitureService";
-import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user";
 import useLoggedIn from "../../hooks/useLoggedIn";
 import "./style.scss";

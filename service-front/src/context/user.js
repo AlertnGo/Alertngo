@@ -1,8 +1,10 @@
 import { createContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+  let history = useHistory();
   // User is the name of the "data" that gets stored in context
   const [user, setUser] = useState({});
 
@@ -14,6 +16,7 @@ const UserProvider = ({ children }) => {
   // Logout updates the user data to default
   const logout = () => {
     setUser(() => ({}));
+    history.push("/me/login");
   };
 
   return (

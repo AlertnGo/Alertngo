@@ -3,12 +3,13 @@ import { UserContext } from "../context/user";
 
 const useLoggedIn = () => {
   const user = useContext(UserContext);
+  const { logout } = useContext(UserContext);
 
   useEffect(() => {
     if (!user.user.token) {
-      alert("please log in");
+      logout();
     }
-  }, [user]);
+  }, [logout, user]);
 };
 
 export default useLoggedIn;
