@@ -25,14 +25,14 @@ const Places = () => {
     <main>
       {error === "" ? null : <p>{error}</p>}
 
-      {places?.map((place) => {
+      {places.length > 0 ?  places.map((place) => {
         return (
           <Link key={place.id} className="place" target="_blanc" to="www.google.com">
             <GoLocation />
             <p>{place.name}</p>
           </Link>
         );
-      })}
+      }) : <p>You have no place</p>}
     </main>
   );
 };
