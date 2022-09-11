@@ -8,7 +8,6 @@ const userController = {
   register: async (req, res) => {
     const { nom, email, password } = req.body;
     if (email && password && nom) {
-      console.log("yes");
       try {
         const find = await prisma.user.findUnique({
           where: {
@@ -82,6 +81,21 @@ const userController = {
     try {
       const users = await prisma.user.findMany();
       res.status(200).json(users);
+    } catch (e) {
+      console.log(e);
+    }
+  },
+
+  //editname
+  editName: async (req, res) => {
+    const nom = req.body;
+    try {
+      const edituser = await prisma.user.edit({
+        data: {
+          name: nom,
+        },
+      });
+      res.status(200).json(edituser);
     } catch (e) {
       console.log(e);
     }
