@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext } from "../context/user";
 const url = "http://localhost:5000/api";
 
 const api = axios.create({
@@ -8,15 +10,13 @@ const api = axios.create({
   },
 });
 
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+// api.interceptors.request.use((config) => {
+//   const user = useContext(UserContext);
+//   const token = user?.user.token;
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`;
+//   }
+//   return config;
+// });
 
 export default api;
-
-
-

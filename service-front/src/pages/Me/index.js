@@ -26,7 +26,6 @@ function MyProfile() {
   const [error, setError] = useState("");
   const history = useHistory();
   const userid = user?.user?.id;
-  console.log(userid);
 
   const getVehicles = async () => {
     try {
@@ -65,19 +64,20 @@ function MyProfile() {
     }
   };
 
-  const ThemeChange = () => {
-    document.documentElement.classList.toggle("darkmode");
-  };
-
   const changeName = async (e) => {
     e.preventDefault();
+    console.log("hello");
     try {
-      await userServices.changeMyName(newName, userid);
+      await userServices.editName(userid, newName);
       setNewName("");
       setNameToggle(!nameToggle);
     } catch (error) {
       setError(error.message);
     }
+  };
+
+  const ThemeChange = () => {
+    document.documentElement.classList.toggle("darkmode");
   };
 
   const signout = async () => {
