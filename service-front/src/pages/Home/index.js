@@ -13,18 +13,16 @@ const Home = () => {
   const [ndp, setNdp] = useState("");
   const [userInfo, SetUserInfo] = useState("");
   const [notif, setNotif] = useState(false);
-  localStorage.setItem("Number", userInfo);
 
-  const getCar = async (event) => {
-    event.preventDefault();
-    const title = ndp ;
+  const getCar = async (e) => {
+    e.preventDefault();
+    const title = ndp;
     if (title === "") {
       setNotif(true);
     } else {
       try {
-        const userData = await VoitureService.getByNdp(title);
-        const userDataNum = userData.data.data[0].telephone;
-        SetUserInfo(userDataNum);
+        const userData = await VoitureService.getByTitle(title);
+        console.log(userData);
       } catch (error) {
         if (error) {
           console.log(error);
@@ -45,14 +43,14 @@ const Home = () => {
             signaler une alerte ou pour envoyer un message.
             {notif ? (
               <p className="error">
-                Veuillez saisir un numéro de plaque d'immatriculation valide  
+                Veuillez saisir un numéro de plaque d'immatriculation valide
               </p>
             ) : null}
             <input
               className="searchBar"
               type="text"
               name="ndp"
-              placeholder="AA 000 AA"
+              placeholder="AA000AA"
               maxLength="07"
               autoComplete="off"
               onChange={(e) => {

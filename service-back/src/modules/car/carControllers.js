@@ -16,24 +16,21 @@ const carController = {
       console.log(e);
     }
   },
-
+  
   //get car by id
   findCar: async (req, res) => {
-    const { title } = req.body;
-
+    console.log("hello", req);
     try {
       const car = await prisma.car.findUnique({
         where: {
-          title: JSON.stringify(title),
+          title: JSON.parse(req.params.title),
         },
       });
-      if (car) {
-        res.status(200).json(car);
-      } else {
-        res.status(404);
-      }
+      res.status(200).json(car);
     } catch (e) {
-      console.log(e);
+      res.status(500).json(
+        "le numero noo"
+      );
     }
   },
 
