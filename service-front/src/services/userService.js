@@ -17,9 +17,8 @@ const userServices = {
     getAll: async () => {
         return await api.get('/user')
     },
-    editName : async (id , nom) => {
-        const url = "/user/" + id
-        return await api.put (url , nom)
+    editName : async (id , name) => {
+        return await api.patch ( `user/${id}/${name}`)
     },
 }
 

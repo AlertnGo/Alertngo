@@ -24,6 +24,7 @@ function MyProfile() {
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
+  const { login } = useContext(UserContext);
   const history = useHistory();
   const userid = user?.user?.id;
 
@@ -66,11 +67,12 @@ function MyProfile() {
 
   const changeName = async (e) => {
     e.preventDefault();
-    console.log("hello");
     try {
-      await userServices.editName(userid, newName);
+      console.log(userid, newName);
+      const response = await userServices.editName(userid, newName);
       setNewName("");
       setNameToggle(!nameToggle);
+      login(response.data);
     } catch (error) {
       setError(error.message);
     }
@@ -115,7 +117,6 @@ function MyProfile() {
 
             <div className="infodiv">
               <h2>{user?.user?.telephone}</h2>
-             
             </div>
 
             <div className="infodiv">

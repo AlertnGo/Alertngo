@@ -95,7 +95,7 @@ const userController = {
           id: JSON.parse(req.params.id),
         },
         data: {
-          name: JSON.stringify(req.body.name),
+          name: req.params.name,
         },
       });
       res.status(200).json(edituser);
