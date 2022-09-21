@@ -89,14 +89,13 @@ const userController = {
 
   //editname
   editName: async (req, res) => {
-    const nom = req.body;
     try {
       const edituser = await prisma.user.update({
         where: {
           id: JSON.parse(req.params.id),
         },
         data: {
-          name: nom,
+          name: JSON.stringify(req.body.name),
         },
       });
       res.status(200).json(edituser);
