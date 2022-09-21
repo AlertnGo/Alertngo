@@ -114,6 +114,11 @@ function MyProfile() {
             ) : null}
 
             <div className="infodiv">
+              <h2>{user?.user?.telephone}</h2>
+             
+            </div>
+
+            <div className="infodiv">
               <h2>Thème</h2>
               <button className="button" onClick={ThemeChange}>
                 <Brightness6RoundedIcon />

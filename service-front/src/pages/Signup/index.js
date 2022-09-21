@@ -10,6 +10,7 @@ function Signup() {
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [telephone, setTelephone] = useState("");
   const [error, setError] = useState("");
   const history = useHistory();
 
@@ -19,6 +20,7 @@ function Signup() {
       nom: nom,
       email: email,
       password: password,
+      telephone: telephone,
     };
     try {
       const response = await userServices.signup(user);
@@ -63,6 +65,20 @@ function Signup() {
             required
           />
         </label>
+
+        <label>
+          <p>
+            Telephone<span>*</span>
+          </p>
+          <input
+            onChange={(e) => setTelephone(e.target.value)}
+            type="text"
+            name="telephone"
+            placeholder="0697654321"
+            required
+          />
+        </label>
+
         <label>
           <p>
             Mot de passe<span>*</span>

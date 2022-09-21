@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 const userController = {
   register: async (req, res) => {
-    const { nom, email, password } = req.body;
+    const { nom, email, password, telephone } = req.body;
     if (email && password && nom) {
       try {
         const find = await prisma.user.findUnique({
@@ -24,6 +24,7 @@ const userController = {
               email: email,
               name: nom,
               password: hashedPassword,
+              telephone: telephone,
             },
           });
           res.status(200).json(adduser);

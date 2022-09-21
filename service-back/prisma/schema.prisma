@@ -13,6 +13,7 @@ datasource db {
 model User {
   id      Int       @id @default(autoincrement())
   email   String    @unique
+  telephone String  @db.VarChar(13)
   password String?
   name    String?
   avatar  String?

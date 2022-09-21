@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const carController = {
-  //get all car
+  // get all car
   getAllCar: async (req, res) => {
     try {
       const cars = await prisma.car.findMany({
