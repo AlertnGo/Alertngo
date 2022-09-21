@@ -13,6 +13,8 @@ const UserProvider = ({ children }) => {
     setUser(() => data);
   };
 
+ 
+
   // Logout updates the user data to default
   const logout = () => {
     setUser(() => ({}));
@@ -20,7 +22,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout , setUser }}>
       {children}
     </UserContext.Provider>
   );
