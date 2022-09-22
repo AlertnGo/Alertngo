@@ -12,7 +12,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const { login } = useContext(UserContext);
+  const { login, } = useContext(UserContext);
 
   const GetLogin = async (e) => {
     const user = {
@@ -29,7 +29,7 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
-       //setError(error ? error.response.data.message : "Il y a eu un problème");
+      //setError(error ? error.response.data.message : "Il y a eu un problème");
       setError(error ? error.message : "Il y a eu un problème");
     }
   };

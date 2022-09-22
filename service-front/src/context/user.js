@@ -13,7 +13,9 @@ const UserProvider = ({ children }) => {
     setUser(() => data);
   };
 
- 
+  const refreshName = (data) => {
+    setUser(() => data.user.name);
+  };
 
   // Logout updates the user data to default
   const logout = () => {
@@ -22,7 +24,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout , setUser }}>
+    <UserContext.Provider value={{ user, login, logout, refreshName }}>
       {children}
     </UserContext.Provider>
   );

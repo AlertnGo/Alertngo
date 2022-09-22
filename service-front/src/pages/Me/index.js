@@ -24,7 +24,7 @@ function MyProfile() {
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
-  const { setUser } = useContext(UserContext);
+  const { login } = useContext(UserContext);
   const history = useHistory();
   const userid = user?.user?.id;
 
