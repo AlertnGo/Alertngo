@@ -16,23 +16,6 @@ const carController = {
       console.log(e);
     }
   },
-  
-  //get car by id
-  findCar: async (req, res) => {
-    console.log("hello", req);
-    try {
-      const car = await prisma.car.findUnique({
-        where: {
-          title: JSON.parse(req.params.title),
-        },
-      });
-      res.status(200).json(car);
-    } catch (e) {
-      res.status(500).json(
-        "le numero noo"
-      );
-    }
-  },
 
   //add car
   addCar: async (req, res) => {
@@ -50,23 +33,6 @@ const carController = {
     }
   },
 
-  //update car
-  updateCar: async (req, res) => {
-    try {
-      const car = await prisma.car.update({
-        where: {
-          id: req.params.id,
-        },
-        data: {
-          ...req.body,
-        },
-      });
-      res.status(200).json(car);
-    } catch (e) {
-      console.log(e);
-    }
-  },
-
   deleteCar: async (req, res) => {
     try {
       await prisma.car.delete({
@@ -77,6 +43,20 @@ const carController = {
       res.status(200).json("C'est fait");
     } catch (e) {
       console.log(e);
+    }
+  },
+
+  //get car by title
+  findCar: async (req, res) => {
+    try {
+      const car = await prisma.car.findMany({
+        where: {
+          title: JSON.parse(req.params.title),
+        },
+      });
+      res.status(200).json(car);
+    } catch (e) {
+      res.status(500).json("le numéro que vous avez essayé est introuvable");
     }
   },
 };
