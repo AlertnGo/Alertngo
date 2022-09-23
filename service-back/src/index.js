@@ -4,7 +4,7 @@ import cors from "cors";
 import prisma from "../index.js";
 import userRoute from "./modules/user/userRouter.mjs";
 import carRoute from "./modules/car/carRouter.mjs";
-// import annonceRoute from "./modules/annonce/annonceRouter.mjs";
+import addRoute from "./modules/add/addRouter.mjs";
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(
 );
 app.use("/api/", userRoute);
 app.use("/api/", carRoute);
-// app.use("/api/", annonceRoute);
+app.use("/api/", addRoute);
 
 app.get(`/api`, async (req, res) => {
   res.json("Bienvenu sur le serveur de Alertngo");
