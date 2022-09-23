@@ -25,7 +25,7 @@ const UserProvider = ({ children }) => {
 
   // Logout updates the user data to default
   const logout = () => {
-    setUser(() => ({}));
+    setToken(() => ({}));
     history && history.push("/me/login");
   };
 

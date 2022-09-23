@@ -112,8 +112,13 @@ const userController = {
           id: JSON.parse(req.params.id),
         },
       });
+      const cars = await prisma.car.findMany({
+        where: {
+          userId: JSON.parse(req.params.id),
+        },
+      });
       if (user) {
-        res.status(200).json(user);
+        res.status(200).json({ user, cars });
       } else {
         res.status(404);
       }

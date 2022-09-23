@@ -18,7 +18,6 @@ import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 function MyProfile() {
   useLoggedIn();
   const { logout, user, login, userId } = useContext(UserContext);
-  const [myCars, setMyCars] = useState([]);
   const [newNdp, setNewNdp] = useState("");
   const [newName, setNewName] = useState("");
   const [toggle, setToggle] = useState(false);
@@ -31,15 +30,7 @@ function MyProfile() {
     try {
       const response = await userServices.profil(userId);
       login(response.data);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  const getVehicles = async () => {
-    try {
-      const response = await voitureService.getAllByUser(userId);
-      setMyCars(response.data);
+      console.log(response.data);
     } catch (error) {
       setError(error.message);
     }
@@ -49,7 +40,7 @@ function MyProfile() {
     const id = e.currentTarget.id;
     try {
       await voitureService.deleteCar(id);
-      getVehicles();
+      getConnected();
     } catch (error) {
       setError(error.message);
     }
@@ -57,7 +48,6 @@ function MyProfile() {
 
   useEffect(() => {
     getConnected();
-    getVehicles();
   }, []);
 
   const addNew = async (e) => {
@@ -67,7 +57,7 @@ function MyProfile() {
       await voitureService.addCar(title, userId);
       setNewNdp("");
       setToggle(!toggle);
-      getVehicles();
+      getConnected();
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -102,7 +92,7 @@ function MyProfile() {
           {error === "" ? null : <p className="error">{error} </p>}
           <div className="infos">
             <div className="infodiv">
-              <h2>{user?.name}</h2>
+              <h2>{user?.user?.name}</h2>
               <button
                 className="button"
                 onClick={() => setNameToggle(!nameToggle)}
@@ -123,7 +113,7 @@ function MyProfile() {
             ) : null}
 
             <div className="infodiv">
-              <h2>{user?.telephone}</h2>
+              <h2>{user?.user?.telephone}</h2>
             </div>
 
             <div className="infodiv">
@@ -145,23 +135,28 @@ function MyProfile() {
           <h3>Mes Vehicles</h3>
 
           <div className="ndpdivider">
-            {myCars.length === 0 ? (
+            {user?.cars.lenth === 0 ? (
               <p className="specialtext">
                 Vous n'avez pas encore ajouté votre véhicule, cliquez sur le
                 bouton ci-dessous pour ajouter vos véhicules
               </p>
-            ) : null}
-            {myCars.map((car, index) => (
-              <div className="ndpdiv" key={index}>
-                <p className="ndplate">{car.title}</p>
-                <div className="buttonset">
-                  <button className="button" id={car.id} onClick={deleteOneCar}>
-                    <DeleteRoundedIcon />
-                    <p>Suprimer</p>
-                  </button>
+            ) : (
+              user?.cars?.map((car, index) => (
+                <div className="ndpdiv" key={index}>
+                  <p className="ndplate">{car.title}</p>
+                  <div className="buttonset">
+                    <button
+                      className="button"
+                      id={car.id}
+                      onClick={deleteOneCar}
+                    >
+                      <DeleteRoundedIcon />
+                      <p>Suprimer</p>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           {toggle === true ? (
             <AddPage

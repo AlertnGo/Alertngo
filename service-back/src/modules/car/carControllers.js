@@ -3,20 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const carController = {
-  // get all car
-  getAllCar: async (req, res) => {
-    try {
-      const cars = await prisma.car.findMany({
-        where: {
-          userId: JSON.parse(req.params.id),
-        },
-      });
-      res.status(200).json(cars);
-    } catch (e) {
-      console.log(e);
-    }
-  },
-
   //add car
   addCar: async (req, res) => {
     const { title, userId } = req.body;
