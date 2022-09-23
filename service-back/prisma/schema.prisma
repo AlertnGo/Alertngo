@@ -34,6 +34,8 @@ model Message {
 model Annonce {
   id     Int     @id @default(autoincrement())
   title  String  @db.VarChar(10)
+  latitude String  @db.VarChar(20)
+  longitude String  @db.VarChar(20)
   active Boolean @default(true)
   userId Int
 }
