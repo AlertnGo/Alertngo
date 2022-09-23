@@ -73,10 +73,6 @@ const Home = () => {
             recherché n'est pas enregistré sur AlernGo. Nous sommes vraiment
             désolés pour le désagrément.
           </p>
-          <p className="redflag">
-            Vous pouvez chercher un d'autre numéro de plaque d'immatriculation
-            quand vous souhaitez 🤗.
-          </p>
         </div>
       ) : (
         <DefaultAnimation />
