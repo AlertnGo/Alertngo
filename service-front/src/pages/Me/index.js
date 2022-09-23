@@ -17,13 +17,13 @@ import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 
 function MyProfile() {
   useLoggedIn();
+  const history = useHistory();
   const { logout, user, login, userId } = useContext(UserContext);
   const [newNdp, setNewNdp] = useState("");
   const [newName, setNewName] = useState("");
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
-  const history = useHistory();
   console.log(userId);
 
   const getConnected = async () => {
@@ -135,7 +135,7 @@ function MyProfile() {
           <h3>Mes Vehicles</h3>
 
           <div className="ndpdivider">
-            {user?.cars.lenth === 0 ? (
+            {user?.cars && user.cars.length === 0 ? (
               <p className="specialtext">
                 Vous n'avez pas encore ajouté votre véhicule, cliquez sur le
                 bouton ci-dessous pour ajouter vos véhicules
