@@ -17,20 +17,28 @@ import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 
 function MyProfile() {
   useLoggedIn();
-  const { logout, user } = useContext(UserContext);
+  const { logout, user, login, userId } = useContext(UserContext);
   const [myCars, setMyCars] = useState([]);
   const [newNdp, setNewNdp] = useState("");
   const [newName, setNewName] = useState("");
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
-  const { login } = useContext(UserContext);
   const history = useHistory();
-  const userid = user?.user?.id;
+  console.log(userId);
+
+  const getConnected = async () => {
+    try {
+      const response = await userServices.profil(userId);
+      login(response.data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const getVehicles = async () => {
     try {
-      const response = await voitureService.getAllByUser(userid);
+      const response = await voitureService.getAllByUser(userId);
       setMyCars(response.data);
     } catch (error) {
       setError(error.message);
@@ -48,13 +56,13 @@ function MyProfile() {
   };
 
   useEffect(() => {
+    getConnected();
     getVehicles();
   }, []);
 
   const addNew = async (e) => {
     e.preventDefault();
     const title = newNdp;
-    const userId = userid;
     try {
       await voitureService.addCar(title, userId);
       setNewNdp("");
@@ -68,10 +76,10 @@ function MyProfile() {
   const changeName = async (e) => {
     e.preventDefault();
     try {
-      console.log(userid, newName);
-      await userServices.editName(userid, newName);
+      await userServices.editName(userId, newName);
       setNewName("");
       setNameToggle(!nameToggle);
+      getConnected();
     } catch (error) {
       setError(error.message);
     }
@@ -94,7 +102,7 @@ function MyProfile() {
           {error === "" ? null : <p className="error">{error} </p>}
           <div className="infos">
             <div className="infodiv">
-              <h2>{user?.user?.name}</h2>
+              <h2>{user?.name}</h2>
               <button
                 className="button"
                 onClick={() => setNameToggle(!nameToggle)}
@@ -115,7 +123,7 @@ function MyProfile() {
             ) : null}
 
             <div className="infodiv">
-              <h2>{user?.user?.telephone}</h2>
+              <h2>{user?.telephone}</h2>
             </div>
 
             <div className="infodiv">

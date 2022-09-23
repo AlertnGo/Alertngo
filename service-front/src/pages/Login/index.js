@@ -12,7 +12,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const { login, } = useContext(UserContext);
+  const { connected, userConnected } = useContext(UserContext);
 
   const GetLogin = async (e) => {
     const user = {
@@ -23,7 +23,8 @@ function Login() {
       e.preventDefault();
       const response = await userServices.login(user);
       if (response.status === 200) {
-        login(response.data);
+        connected(response.data.token);
+        userConnected(response.data.user.id);
         console.log(response);
         history.push("/me/profile");
       }

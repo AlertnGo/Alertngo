@@ -6,6 +6,8 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   let history = useHistory();
   // User is the name of the "data" that gets stored in context
+  const [token, setToken] = useState("");
+  const [ userId , setUserId] = useState("");
   const [user, setUser] = useState({});
 
   // Login updates the user data with a name parameter
@@ -13,9 +15,13 @@ const UserProvider = ({ children }) => {
     setUser(() => data);
   };
 
-  const refreshName = (data) => {
-    setUser(() => data.user.name);
+  const connected = (data) => {
+    setToken(() => data);
   };
+
+  const userConnected = (data) => {
+    setUserId(() => data);
+  }; 
 
   // Logout updates the user data to default
   const logout = () => {
@@ -24,7 +30,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout, refreshName }}>
+    <UserContext.Provider value={{ user, login, logout, token, connected , userId , userConnected}}>
       {children}
     </UserContext.Provider>
   );
