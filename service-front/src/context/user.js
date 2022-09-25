@@ -24,7 +24,6 @@ const UserProvider = ({ children }) => {
   // Logout updates the user data to default
   const logout = () => {
     setToken(() => ({}));
-    alert("loged out")
   };
 
   return (

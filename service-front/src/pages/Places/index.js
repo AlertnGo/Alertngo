@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import userServices from "../../services/userService";
+import addServices from "../../services/addServices";
 import { GoLocation } from "react-icons/go";
 import "./style.scss";
 
@@ -12,7 +12,7 @@ const Places = () => {
   useEffect(() => {
     const getPlaces = async () => {
       try {
-        const response = await userServices.getAll();
+        const response = await addServices.getAll();
         setPlaces(response.data);
       } catch (error) {
         setError(error.message);
@@ -32,7 +32,7 @@ const Places = () => {
             <p>{place.name}</p>
           </Link>
         );
-      }) : <p>You have no place</p>}
+      }) : <p>il y'a aucun place libre</p>}
     </main>
   );
 };
