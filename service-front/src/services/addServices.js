@@ -5,8 +5,8 @@ const addServices = {
     return await api.get("/add");
   },
 
-  add: async (latitude, longitude, userId) => {
-    return await api.get(`/add/${userId}`, { latitude, longitude });
+  add: async (data) => {
+    return await api.post(`/add/`, data);
   },
 };
 

@@ -28,16 +28,16 @@ const Places = () => {
       {places.length > 0 ? (
         places.map((place) => {
           return (
-            <Link
+            <a
               key={place.id}
               className="place"
               target="_blanc"
-              to="www.google.com"
+              href={`https://www.google.com/maps/?q=${place.latitude},${place.longitude}`}
             >
               <GoLocation />
               <p>X : {place.latitude}</p>
               <p>Y : {place.longitude}</p>
-            </Link>
+            </a>
           );
         })
       ) : (

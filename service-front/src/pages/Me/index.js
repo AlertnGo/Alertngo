@@ -24,7 +24,7 @@ function MyProfile() {
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
-  console.log(userId);
+
 
   const getConnected = async () => {
     try {

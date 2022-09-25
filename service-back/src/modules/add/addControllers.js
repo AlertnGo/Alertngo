@@ -17,10 +17,7 @@ const addController = {
     try {
       const car = await prisma.annonce.create({
         data: {
-          userId: req.body.userId,
-          latitude: req.body.latitude,
-          longitude: req.body.longitude,
-          title: req.body.title,
+          ...req.body,
         },
       });
       res.status(201).json(car);

@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+
+import addServices from "../../services/addServices";
+import { UserContext } from "../../context/user";
 import "./style.scss";
 
-import map from '../../assets/imgs/map.gif';
+import map from "../../assets/imgs/map.gif";
 
 const Spot = () => {
+  const { userId } = useContext(UserContext);
+
   const spotThisPlace = () => {
+    const showPosition = async (position) => {
+      try {
+        const data = {
+          userId: userId,
+          title: "new",
+          latitude: JSON.stringify(position.coords.latitude),
+          longitude: JSON.stringify(position.coords.longitude),
+        };
+        await addServices.add(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
       alert("Geolocation is not supported by this browser.");
     }
-
-    function showPosition(position) {
-      console.log(position.coords.latitude, position.coords.longitude);
-    }
   };
   return (
     <main>
-    
       <img src={map} alt="Logo" className="mapIcon" />
       <button className="biggieButton" onClick={spotThisPlace}>
         Place cet spot comme parking
