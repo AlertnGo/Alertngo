@@ -3,9 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const addController = {
-
   getAll: async (req, res) => {
-    
     try {
       const adds = await prisma.annonce.findMany();
       res.status(200).json(adds);
@@ -17,10 +15,12 @@ const addController = {
   //add car
   addAdd: async (req, res) => {
     try {
-      const car = await prisma.car.create({
+      const car = await prisma.annonce.create({
         data: {
-          title: title,
-          userId: userId,
+          userId: req.body.userId,
+          latitude: req.body.latitude,
+          longitude: req.body.longitude,
+          title: req.body.title,
         },
       });
       res.status(201).json(car);
@@ -28,8 +28,6 @@ const addController = {
       console.log(e);
     }
   },
-
-
 };
 
 export default addController;

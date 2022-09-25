@@ -25,14 +25,24 @@ const Places = () => {
     <main>
       {error === "" ? null : <p>{error}</p>}
 
-      {places.length > 0 ?  places.map((place) => {
-        return (
-          <Link key={place.id} className="place" target="_blanc" to="www.google.com">
-            <GoLocation />
-            <p>{place.name}</p>
-          </Link>
-        );
-      }) : <p>il y'a aucun place libre</p>}
+      {places.length > 0 ? (
+        places.map((place) => {
+          return (
+            <Link
+              key={place.id}
+              className="place"
+              target="_blanc"
+              to="www.google.com"
+            >
+              <GoLocation />
+              <p>X : {place.latitude}</p>
+              <p>Y : {place.longitude}</p>
+            </Link>
+          );
+        })
+      ) : (
+        <p>il y'a aucun place libre</p>
+      )}
     </main>
   );
 };
