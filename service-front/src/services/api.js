@@ -1,7 +1,10 @@
 import axios from "axios";
 // import { useContext } from "react";
 // import { UserContext } from "../context/user";
-const url = "http://localhost:9000/api";
+import * as dotenv from "dotenv";
+dotenv.config({ debug: true });
+
+const url = process.env.REACT_APP_BACKEND;
 
 const api = axios.create({
   baseURL: url,

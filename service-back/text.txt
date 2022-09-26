@@ -1,0 +1,7 @@
+
+DATABASE_URL='mysql://643dag6i70kg7s47styf:pscale_pw_gcE2oBF6fBOVnbpN7gmOuVM7oGGURb2aCkKIeBCoyYh@us-east.connect.psdb.cloud/alertngo?sslaccept=strict'
+
+JWT_SECRET=""
+PORT=
+FRONTEND="http://localhost:3000"
+
