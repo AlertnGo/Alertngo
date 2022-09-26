@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/user";
+
 import "./style.scss";
 
 function Header() {
+  const { token } = useContext(UserContext);
+
   return (
     <header>
       <div className="headerpc">
@@ -11,11 +16,13 @@ function Header() {
           </div>
         </Link>
 
-        <Link to="/spot">
-          <div className="navbutton borderleft">
-            <p>Spot</p>
-          </div>
-        </Link>
+        {token && (
+          <Link to="/spot">
+            <div className="navbutton borderleft">
+              <p>Spot</p>
+            </div>
+          </Link>
+        )}
 
         <Link to="/place">
           <div className="navbutton borderright">
