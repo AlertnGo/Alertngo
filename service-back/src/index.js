@@ -27,7 +27,7 @@ app.get(`/api`, async (req, res) => {
   res.json("Bienvenu sur le serveur de Alertngo");
 });
 
-app.listen(5000, () =>
+app.listen(7000, () =>
   console.log(`
 🚀 Server ready at: http://localhost:5000`)
 );
