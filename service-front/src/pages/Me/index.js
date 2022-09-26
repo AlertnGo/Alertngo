@@ -18,13 +18,12 @@ import Brightness6RoundedIcon from "@material-ui/icons/Brightness6Rounded";
 function MyProfile() {
   useLoggedIn();
   const history = useHistory();
-  const { logout, user, login, userId } = useContext(UserContext);
+  const { logout, user, login, userId, token } = useContext(UserContext);
   const [newNdp, setNewNdp] = useState("");
   const [newName, setNewName] = useState("");
   const [toggle, setToggle] = useState(false);
   const [nameToggle, setNameToggle] = useState(false);
   const [error, setError] = useState("");
-
 
   const getConnected = async () => {
     try {
@@ -47,8 +46,12 @@ function MyProfile() {
   };
 
   useEffect(() => {
-    getConnected();
-  }, []);
+    if (token) {
+      getConnected();
+    } else {
+      history.push("/me/login");
+    }
+  }, [history, token]);
 
   const addNew = async (e) => {
     e.preventDefault();
@@ -79,9 +82,9 @@ function MyProfile() {
     document.documentElement.classList.toggle("darkmode");
   };
 
-  const signout = async () => {
+  const signout = () => {
     logout();
-    history.push("/me/login");
+    // history.push("/me/login");
   };
 
   return (
