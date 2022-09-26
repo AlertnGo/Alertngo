@@ -22,7 +22,7 @@ const Home = () => {
     } else {
       try {
         const userData = await VoitureService.getByTitle(title);
-        console.log(userData);
+        console.log(userData.data);
       } catch (error) {
         if (error) {
           console.log(error);

@@ -37,12 +37,32 @@ const carController = {
     try {
       const car = await prisma.car.findMany({
         where: {
-          title: JSON.parse(req.params.title),
+          title: req.params.title,
+        },
+        include: {
+          User: {
+            select: { telephone: true, name: true },
+          },
         },
       });
       res.status(200).json(car);
     } catch (e) {
       res.status(500).json("le numéro que vous avez essayé est introuvable");
+    }
+  },
+
+  getAll: async (req, res) => {
+    try {
+      const adds = await prisma.car.findMany({
+        include: {
+          User: {
+            select: { telephone: true },
+          },
+        },
+      });
+      res.status(200).json(adds);
+    } catch (e) {
+      console.log(e);
     }
   },
 };

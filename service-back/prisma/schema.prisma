@@ -17,6 +17,7 @@ model User {
   password String?
   name    String?
   avatar  String?
+  car Car[]
 }
 
 model Car {
@@ -24,6 +25,7 @@ model Car {
   title  String  @db.VarChar(10)
   active Boolean @default(true)
   userId Int
+  User User @relation(fields: [userId], references: [id])
 }
 
 model Message {

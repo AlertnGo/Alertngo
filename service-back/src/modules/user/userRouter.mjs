@@ -6,7 +6,6 @@ const userRouter = Router();
 
 userRouter.route(`${route}/signup`).post(userController.register);
 userRouter.route(`${route}/login`).post(userController.login);
-userRouter.route(`${route}`).get(userController.getAllUser);
 userRouter.route(`${route}/:id`).get(userController.findUser);
 userRouter.route(`${route}/:id/:name`).patch(userController.editName);
 
