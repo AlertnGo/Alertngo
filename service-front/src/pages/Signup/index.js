@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import userServices from "../../services/userService";
-import { useHistory } from "react-router-dom";
+import { useHistory  } from "react-router-dom";
+import { UserContext } from "../../context/user";
+
 //imgs
 import logosvg from "../../assets/imgs/logosvg.svg";
 
@@ -12,7 +14,29 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [telephone, setTelephone] = useState("");
   const [error, setError] = useState("");
+  const { connected, userConnected } = useContext(UserContext);
+
   const history = useHistory();
+
+  const GetLogin = async () => {
+    const user = {
+      email: email,
+      password: password,
+    };
+    try {
+      const response = await userServices.login(user);
+      if (response.status === 200) {
+        connected(response.data.token);
+        userConnected(response.data.user.id);
+        console.log(response);
+        history.push("/me/profile");
+      }
+    } catch (error) {
+      console.log(error);
+      //setError(error ? error.response.data.message : "Il y a eu un problème");
+      setError(error ? error.message : "Il y a eu un problème");
+    }
+  };
 
   const signup = async (e) => {
     e.preventDefault();
@@ -25,7 +49,7 @@ function Signup() {
     try {
       const response = await userServices.signup(user);
       if (response.status === 200) {
-        history.push("/");
+        GetLogin();
       }
     } catch (error) {
       setError(error.response.data.message || "Il y a eu un problème");
