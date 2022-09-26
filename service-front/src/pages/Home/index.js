@@ -22,7 +22,7 @@ const Home = () => {
     } else {
       try {
         const userData = await VoitureService.getByTitle(title);
-        console.log(userData.data);
+        SetUserInfo(userData.data[0]);
       } catch (error) {
         if (error) {
           console.log(error);
@@ -64,7 +64,7 @@ const Home = () => {
           </button>
         </form>
       </section>
-      {userInfo ? (
+      {userInfo && userInfo.User ? (
         <MessagesOptions />
       ) : userInfo === undefined ? (
         <div className="NotFound">

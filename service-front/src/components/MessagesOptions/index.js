@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { messagesServices } from "../../services";
 import "./style.scss";
 import { useHistory } from "react-router-dom";
@@ -6,25 +6,29 @@ import { useHistory } from "react-router-dom";
 //icons
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 
-function MessagesOptions(props) {
-  const [messages, setMessages] = useState([]);
+function MessagesOptions() {
   const [mymessages, setMymessages] = useState("");
-  const [setError] = useState("");
   const PhoneNumber = localStorage.getItem("Number");
   const history = useHistory();
-  useEffect(() => {
-    const getMessages = async () => {
-      try {
-        const Messages = await messagesServices.getAll();
-        setMessages(Messages.data.data);
-      } catch (error) {
-        if (error) {
-          setError(error);
-        }
-      }
-    };
-    getMessages();
-  }, [setError]);
+
+  const messages = [
+    {
+      message:
+        "Bonjour, je voudrais vous informer que votre voiture a été accidentée par quelqu'un.",
+    },
+    {
+      message:
+        "Bonjour, je voudrais vous informer que votre voiture bloque la route. ",
+    },
+    {
+      message:
+        "Bonjour, je voudrais vous informer que vous vous êtes garé sur la mauvaise place de parking, si vous pouvez venir vous garer quelque part, s'il vous plaît.",
+    },
+    {
+      message:
+        "Bonjour, je voudrais vous informer que quelqu'un essaie de voler votre voiture.",
+    },
+  ];
 
   const allmessages = document.querySelectorAll(".message p");
   allmessages.forEach((element) => {
@@ -36,7 +40,7 @@ function MessagesOptions(props) {
   });
 
   const handleSelect = async (e) => {
-    setMymessages(e.target.innerHTML);
+    setMymessages(e.target.innerText);
   };
 
   const sendMessage = async (e) => {
