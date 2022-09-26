@@ -16,7 +16,7 @@ app.use(
     allowedHeaders: "Content-Type,Authorization",
     exposedHeaders: "Content-Range,X-Content- Range",
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND,
   })
 );
 app.use("/api/", userRoute);
@@ -27,9 +27,9 @@ app.get(`/api`, async (req, res) => {
   res.json("Bienvenu sur le serveur de Alertngo");
 });
 
-app.listen(7000, () =>
+app.listen(process.env.PORT, () =>
   console.log(`
-🚀 Server ready at: http://localhost:5000`)
+🚀 Server ready at ${process.env.PORT}`)
 );
 
 export default prisma;
