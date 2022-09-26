@@ -1,5 +1,6 @@
 import "./App.scss";
 import React from "react";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import ProtectedRoute from "./hooks/ProtectedRoute";
 import Home from "./pages/Home";

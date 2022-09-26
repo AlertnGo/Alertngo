@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
+import { MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./context/user";
@@ -8,7 +10,11 @@ import { UserProvider } from "./context/user";
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <MantineProvider withNormalizeCSS withGlobalStyles>
+        <NotificationsProvider>
+          <App />
+        </NotificationsProvider>
+      </MantineProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-
+import { showNotification } from "@mantine/notifications";
 import addServices from "../../services/addServices";
 import { UserContext } from "../../context/user";
 import "./style.scss";
@@ -19,6 +19,10 @@ const Spot = () => {
           longitude: JSON.stringify(position.coords.longitude),
         };
         await addServices.add(data);
+        showNotification({
+          title: "Emplacement ajouté ",
+          message: "Merci d'avoir aidé les gens",
+        });
       } catch (error) {
         console.log(error);
       }
